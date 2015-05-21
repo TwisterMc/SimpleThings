@@ -11,3 +11,6 @@
 
 /* Custom Login */
 include ('inc/customLogin.php');
+
+/* Dashboard Widget */
+include ('inc/dashboardWidget.php');

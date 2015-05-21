@@ -3,7 +3,7 @@
  * Custom Login
  * Adds the individual sections, settings, and controls to the theme customizer
  */
-function simpleThings_customizer( $wp_customize ) {
+function simpleThings_customLogin( $wp_customize ) {
     $wp_customize->add_section(
         'simpleThings_section',
         array(
@@ -27,7 +27,7 @@ function simpleThings_customizer( $wp_customize ) {
         )
     );
 }
-add_action( 'customize_register', 'simpleThings_customizer' );
+add_action( 'customize_register', 'simpleThings_customLogin' );
 
 /** Display Logo */
 function simpleThings_login_logo() {
