@@ -16,7 +16,7 @@ function simpleThings_customLogin( $wp_customize ) {
     $wp_customize->add_setting( 'simpleThings-logo-upload' );
 
     $wp_customize->add_control(
-        new WP_Customize_Image_Control(
+        new WP_Customize_Media_Control(
             $wp_customize,
             'simpleThings-logo-upload',
             array(
@@ -31,14 +31,19 @@ add_action( 'customize_register', 'simpleThings_customLogin' );
 
 /** Display Logo */
 function simpleThings_login_logo() {
-    if ( get_theme_mod( 'simpleThings-logo-upload') ) { ?>
+    if ( $imageId = get_theme_mod( 'simpleThings-logo-upload') ) {
+        $image = wp_get_attachment_image_src($imageId, 'medium'); // Login width is about 320px, so medium makes sense as an image size to use
+        $imageSrc = $image[0];
+        $imageWidth = $image[1];
+        $imageHeight = $image[2];
+        ?>
         <style type="text/css">
             body.login div#login h1 a {
-                background-image: url(<?php echo get_theme_mod( 'simpleThings-logo-upload', 'http://placehold.it/100x100' ); ?>);
+                background-image: url(<?php echo $imageSrc; ?>);
                 padding-bottom: 0px;
                 margin-bottom: 0px;
-                background-size: 100px;
-                height: 100px;
+                background-size: <?php echo $imageWidth; ?>px;
+                height: <?php echo $imageHeight; ?>px;
                 width: auto;
             }
         </style>
